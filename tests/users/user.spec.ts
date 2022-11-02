@@ -1,7 +1,7 @@
 import { test } from '@japa/runner'
 
 test.group('User', () => {
-  test('it should create a user', async ({ client }) => {
+  test('it should create a user', async ({ client, assert }) => {
     const userPayload = {
       email: 'test@test.com',
       username: 'test',
@@ -10,8 +10,10 @@ test.group('User', () => {
     }
 
     const response = await client.post('/users').json(userPayload)
-    const { password, ...expected } = userPayload
+    const { password, avatar, ...expected } = userPayload
 
-    response.assertBodyContains(expected)
+    response.assertStatus(201)
+    response.assertBodyContains({ user: expected })
+    assert.notExists(response.body().user.password, 'Password defined')
   })
 })
