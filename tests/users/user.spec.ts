@@ -1,15 +1,15 @@
 import { test } from '@japa/runner'
 
-const baseUrl = `http://${process.env.HOST}:${process.env.PORT}`
-
 test.group('User', () => {
-  test('it should create a user', async ({ assert, client }) => {
+  test('it should create a user', async ({ client }) => {
     const userPayload = {
       email: 'test@test.com',
       username: 'test',
       password: 'test',
     }
 
-    await client.post('/users').json(userPayload)
+    const response = await client.post('/users').json(userPayload)
+
+    response.assertStatus(201)
   })
 })
