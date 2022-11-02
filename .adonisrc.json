@@ -18,8 +18,8 @@
   "tests": {
     "suites": [
       {
-        "name": "functional",
-        "files": ["tests/functional/**/*.spec(.ts|.js)"],
+        "name": "users",
+        "files": ["tests/users/**/*.spec(.ts|.js)"],
         "timeout": 60000
       }
     ]

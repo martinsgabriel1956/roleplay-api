@@ -8,7 +8,7 @@
     "start": "node server.js",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write .",
-    "test": "node ace test"
+    "test": "node ace test --watch"
   },
   "eslintConfig": {
     "extends": [
