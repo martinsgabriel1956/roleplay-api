@@ -33,6 +33,20 @@ test.group('User', (group) => {
     assert.include(response.body().message, 'email')
   })
 
+  test('it should return 409 when username is already in use', async ({ assert, client }) => {
+    const { username } = await UserFactory.create()
+
+    const response = await client.post('/users').json({
+      email: 'test@test.com',
+      username,
+      password: 'test',
+      avatar: 'https://images.com/avatar/1',
+    })
+
+    response.assertStatus(409)
+    assert.include(response.body().message, 'username')
+  })
+
   group.each.setup(async () => {
     await Database.beginGlobalTransaction()
   })
