@@ -1,7 +1,8 @@
+import Database from '@ioc:Adonis/Lucid/Database'
 import { test } from '@japa/runner'
 import UserFactory from 'Database/factories/UserFactory'
 
-test.group('User', () => {
+test.group('User', (group) => {
   test('it should create a user', async ({ client, assert }) => {
     const userPayload = {
       email: 'test@test.com',
@@ -29,5 +30,14 @@ test.group('User', () => {
     })
 
     response.assertStatus(409)
+    assert.include(response.body().message, 'email')
+  })
+
+  group.each.setup(async () => {
+    await Database.beginGlobalTransaction()
+  })
+
+  group.each.teardown(async () => {
+    await Database.rollbackGlobalTransaction()
   })
 })
