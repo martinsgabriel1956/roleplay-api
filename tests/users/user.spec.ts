@@ -1,4 +1,5 @@
 import { test } from '@japa/runner'
+import UserFactory from 'Database/factories/UserFactory'
 
 test.group('User', () => {
   test('it should create a user', async ({ client, assert }) => {
@@ -15,5 +16,18 @@ test.group('User', () => {
     response.assertStatus(201)
     response.assertBodyContains({ user: expected })
     assert.notExists(response.body().user.password, 'Password defined')
+  })
+
+  test('it should return 409 when email is already in use', async ({ assert, client }) => {
+    const { email } = await UserFactory.create()
+
+    const response = await client.post('/users').json({
+      email,
+      username: 'test',
+      password: 'test',
+      avatar: 'https://images.com/avatar/1',
+    })
+
+    response.assertStatus(409)
   })
 })
