@@ -10,7 +10,12 @@
     "format": "prettier --write .",
     "test": "node ace test --watch",
     "create:controller": "node ace make:controller",
-    "create:model": "node ace make:model"
+    "create:test": "node ace make:test",
+    "create:model": "node ace make:model",
+    "create:migration": "node ace make:migration",
+    "create:factory": "node ace make:factory",
+    "create:exception": "node ace make:exception",
+    "create:validator": "node ace make:validator"
   },
   "eslintConfig": {
     "extends": [
