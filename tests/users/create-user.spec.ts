@@ -37,7 +37,7 @@ test.group('Create User', (group) => {
     const { username } = await UserFactory.create()
 
     const response = await client.post('/users').json({
-      email: 'test@test.com',
+      email: 'email@testemail.com',
       username,
       password: 'test',
       avatar: 'https://images.com/avatar/1',
