@@ -2,7 +2,7 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import { test } from '@japa/runner'
 import UserFactory from 'Database/factories/UserFactory'
 
-test.group('User', (group) => {
+test.group('Create User', (group) => {
   test('it should create a user', async ({ client, assert }) => {
     const userPayload = {
       email: 'test@test.com',
