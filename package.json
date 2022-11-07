@@ -63,6 +63,7 @@
   "dependencies": {
     "@adonisjs/core": "^5.8.0",
     "@adonisjs/lucid": "^18.2.0",
+    "@adonisjs/mail": "^8.1.2",
     "@adonisjs/repl": "^3.1.0",
     "luxon": "^3.1.0",
     "phc-argon2": "^1.1.3",
