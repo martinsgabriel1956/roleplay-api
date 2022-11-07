@@ -33,6 +33,13 @@
           "tests/users/**/*.spec(.ts|.js)"
         ],
         "timeout": 60000
+      },
+      {
+        "name": "auth",
+        "files": [
+          "tests/auth/**/*.spec(.ts|.js)"
+        ],
+        "timeout": 60000
       }
     ]
   },
