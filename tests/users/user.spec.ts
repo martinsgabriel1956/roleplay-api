@@ -49,8 +49,32 @@ test.group('User', (group) => {
 
   test('it should return 422 when required data is not provided', async ({ assert, client }) => {
     const response = await client.post('/users').json({})
-    response.assertStatus(422)
 
+    response.assertStatus(422)
+    assert.equal(response.body().code, 'BAD_REQUEST')
+    assert.equal(response.body().status, 422)
+  })
+
+  test('it should return 422 when providing an invalid email', async ({ assert, client }) => {
+    const response = await client.post('/users').json({
+      email: 'test@',
+      username: 'test',
+      password: 'test',
+    })
+
+    response.assertStatus(422)
+    assert.equal(response.body().code, 'BAD_REQUEST')
+    assert.equal(response.body().status, 422)
+  })
+
+  test('it should return 422 when providing an invalid password ', async ({ assert, client }) => {
+    const response = await client.post('/users').json({
+      email: 'test@test.com',
+      username: 'test',
+      password: 'tes',
+    })
+
+    response.assertStatus(422)
     assert.equal(response.body().code, 'BAD_REQUEST')
     assert.equal(response.body().status, 422)
   })
